@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class = 'text-align-center'>
+<p class = 'lead'>{% trans "You have Logged out!" %}</p>
+<p> <a href = "{% url 'auth_login'%}"/>Log In</p>
+</div>
+{% endblock %}

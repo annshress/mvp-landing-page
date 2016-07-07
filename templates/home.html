@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block title %}
+Welcome |
+{% endblock %}
+
+<head> nothing </head>>
+
+<style>
+{% block style %}
+.navbar-static-top {
+    margin-bottom: 0px;
+}
+
+.jumbotron {
+	background-color: #8B93CE;
+	color : #FFF;
+}
+
+/*font awesome clases*/
+.fa-5x {
+    font-size: 7em;
+}
+
+{% endblock %}
+</style>
+
+{% block jumbotron%}
+
+<!-- {{ block.super }} -->
+<!-- call the parent block -->
+{% block jumbo_content%}
+{% if queryset %}
+<div class = "container">
+	<h1>
+		Hello Staff
+	</h1>
+	<div class = "text-align-center">
+		<h3>
+			Sign Ups
+		</h3>
+	</div>
+</div>
+{% else %}
+<div class="jumbotron">
+	<div class="container">
+	<div class = "row">
+	  <div class = "col-sm-6">
+	      <h1>Django 1.8.3 for LiveScore</h1>
+	      <p>LiveScore application support site. </p>
+	      <p>
+	      <a class="btn btn-lg btn-default" href="/" role="button">Join Us &raquo;</a>
+	      </p>
+	   </div>
+	   <div class = "col-sm-6">
+	   	<iframe width="560" height="315" src="https://www.youtube.com/embed/MJmTVk_Ukq0" frameborder="0" allowfullscreen></iframe>
+	   	<!-- <img src = '{% static "img/livescore.jpg" %}'/> -->
+	   </div>
+	</div>
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}
+<!-- block jumbo_content        -->
+
+{%endblock%}
+<!-- block jumbotron -->
+
+{% block content %}
+{% if request.user.is_staff %}
+<div class="row">
+  <div class="col-md-12">
+  	<table class = "table text-align-center">
+  		<tr><td><strong>EMAIL</strong></td><td><strong>FULL NAME</strong></td><td><strong>TIMESTAMP</td></tr></strong>
+		{% for instance in queryset %}
+			<tr><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }}</td></tr>
+		{% endfor %}
+	</div>
+  </div>
+</div>
+{% else %}
+<div class="row">
+  <div class="col-md-4 pull-right">
+		<p class="lead">
+		<b>Sign up for Free!</b>
+		</p>
+		<form  method = 'POST' action = ''> 
+		{% csrf_token%}
+		<!-- action for when we are dealing with multiple forms -->
+		
+		{{ form|crispy }}
+			
+			<input class="btn btn-lg btn-primary" type = 'submit' value = 'Sign Up &raquo;' />
+		</form>
+
+	</div>
+
+	<div class = "col-md-3">
+		<p class="lead text-align-center">Built with Django  &amp; Bootstrap</p>
+	</div>
+	<div class = "col-md-4 text-align-center">
+		<p class="lead">LiveScore app coming soon.</p>
+		<!-- <img src = '{% static "img/livescore.jpg" %}'/> -->
+		<i class="fa fa-futbol-o fa-5x" aria-hidden="true"></i>
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}

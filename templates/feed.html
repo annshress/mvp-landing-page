@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Feed |
+{% endblock %}
+
+{% block jumbo_content%}
+<script type="text/javascript">
+// refresh views periodically
+</script>
+<div class = "jumbotron">
+	<div class="container">
+		<h1>
+			Livescore Feed
+		</h1>
+		<!-- FOR LOOP HERE -->
+		<div class = "custom-row">
+		League Name
+		</div>
+		{% for game in games %}
+		<div class = "{% cycle 'row-gray' 'row-gray-even' %}">
+			<div class = "row text-align-center">
+			<div class = "col-md-2">{{ game.time }}
+			</div>
+			<div class = "col-md-3">{{ game.homeTeam }}
+			</div>
+			<div class = "col-md-2">{{ game.homeScore }}
+			</div>
+			<div class = "col-md-2">{{ game.awayScore }}
+			</div>			
+			<div class = "col-md-3">{{ game.awayTeam }}
+			</div>
+			<!-- <tr><td></td><td></td><td></td><td></td><td></td></tr> -->
+			</div>
+		</div>
+		<!-- ENDFOR -->
+		{% endfor %}
+		<form method = "GET" action = "#" style = "padding-top:3px;">
+			<input type = "submit" class = "btn-primary pull-right" value = "Refresh" name = "mybtn">
+		</form>
+	</div>
+</div>
+
+<div class = "jumbotron">
+	<div class="container">
+		<h1>
+			News Feed
+		</h1>
+	</div>
+</div>
+{% endblock %}

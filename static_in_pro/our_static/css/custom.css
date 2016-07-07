@@ -1,0 +1,26 @@
+.text-align-center {
+	text-align: center;
+}
+
+.padding-left {
+	padding-left: 5em
+}
+
+.custom-row {
+    padding: 8px;
+    background: #333;
+    color: #aaa;
+    /*line-height: 18px;*/
+    border-radius: 6px;
+}
+
+.row-gray {
+    color: #000;
+    border-bottom: solid 1px #666;
+    padding: 5px;
+    /*line-height: 18px;*/
+}
+
+.row-gray-even{
+    background: #cfcfcf;
+}
